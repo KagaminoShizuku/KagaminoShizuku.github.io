@@ -1,0 +1,517 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>EasyX学习笔记 | 鏡野屋</title><meta name="author" content="鏡野雫"><meta name="copyright" content="鏡野雫"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="摸C语言大作业的产物">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EasyX学习笔记">
+<meta property="og:url" content="http://example.com/2024/11/29/easyx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="鏡野屋">
+<meta property="og:description" content="摸C语言大作业的产物">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/avatar.jpg">
+<meta property="article:published_time" content="2024-11-28T17:20:16.000Z">
+<meta property="article:modified_time" content="2024-11-29T15:16:13.214Z">
+<meta property="article:author" content="鏡野雫">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="C语言">
+<meta property="article:tag" content="图形库">
+<meta property="article:tag" content="游戏开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon32.ico"><link rel="canonical" href="http://example.com/2024/11/29/easyx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'EasyX学习笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa-sharp fa-solid fa-file-lines"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/indeximg.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/navlogo.png" alt="Logo"><span class="site-name">鏡野屋</span></a><a class="nav-page-title" href="/"><span class="site-name">EasyX学习笔记</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa-sharp fa-solid fa-file-lines"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">EasyX学习笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-28T17:20:16.000Z" title="发表于 2024-11-29 01:20:16">2024-11-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-29T15:16:13.214Z" title="更新于 2024-11-29 23:16:13">2024-11-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C%E8%AF%AD%E8%A8%80/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>1. 前言</h1>
+<p>学校C语言大作业，可以写一个信息管理系统，也可以做一个游戏<br>
+我觉得写信息管理系统太没意思了，于是打算做一个4k音游，要用到图形界面，还得考虑时间成本，于是我选择了EasyX进行图形化界面的实现。<br>
+下面会写到函数的原型，知道怎么用就可以了不必深挖</p>
+<h1>2. 环境准备</h1>
+<ul>
+<li>Visual Studio 2022</li>
+<li>EasyX_20240601</li>
+</ul>
+<p>VS2022的配置方法不再赘述。<br>
+从<a target="_blank" rel="noopener" href="https://easyx.cn/download/EasyX_20240601.exe">这里</a>下载同款EasyX，下载完成之后打开安装exe跟着走，应该就能看到自动识别0的VS2022目录(先装VS2022)，点目录右侧安装即可；<br>
+还有一个是Easyx的文档，建议也安装看一看毕竟也不大</p>
+<h1>3. EasyX基础</h1>
+<h2 id="3-1-EasyX使用的颜色">3.1. EasyX使用的颜色</h2>
+<p>EasyX可以使用RGB颜色；可以用<a target="_blank" rel="noopener" href="https://lzltool.cn/color">RGB在线转换</a>查询颜色。</p>
+<h2 id="3-2-EasyX的坐标">3.2. EasyX的坐标</h2>
+<p>坐标分为物理坐标和逻辑坐标。<br>
+物理坐标原点(0,0)位于屏幕左上角，以px为单位；<br>
+逻辑坐标原点(0,0)位于窗口左上角，以px为单位。<br>
+下述若无特指，均为逻辑坐标。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">·----------------&gt;</span><br><span class="line">|              X轴</span><br><span class="line">|</span><br><span class="line">|</span><br><span class="line">|</span><br><span class="line">|</span><br><span class="line">|</span><br><span class="line">v Y轴</span><br></pre></td></tr></table></figure>
+<h2 id="3-3-EasyX的绘图表面（又称绘图设备）">3.3. EasyX的绘图表面（又称绘图设备）</h2>
+<p>EasyX中绘图表面分为默认的绘图窗口以及IMAGE对象。一旦绘图表面被指定，所有的绘图函数都会绘制在该绘图表面上。</p>
+<h2 id="3-4-常见问题">3.4. 常见问题</h2>
+<h3 id="3-4-1-编译报错，提示EasyX-is-only-for-c">3.4.1. 编译报错，提示EasyX is only for c++</h3>
+<p>字面意思，EasyX使用了C++的特性，而编译.c文件时VC会调用C编译器导致报错。<br>
+将文件后缀由.c改为.cpp即可解决，C++完全支持C，正常使用即可</p>
+<h3 id="3-4-2-运行报错，提示无法打开-exe进行写入">3.4.2. 运行报错，提示无法打开.exe进行写入</h3>
+<p>这个问题一般是结束程序时点了窗口右上角红叉叉，而实际上程序还在运行，就跟你不能卸载正在运行的游戏一个道理。<br>
+打开任务管理器，在详细信息页找到进程名结束即可暂时解决此问题；<br>
+一劳永逸的方法是在VS上方工具栏的“工具”-“选项”-“调试”-“常规”中打开“调试停止时自动关闭控制台”。</p>
+<h1>4. EasyX用法</h1>
+<h2 id="4-1-引入EasyX">4.1.引入EasyX</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;easyx.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="4-2-窗口函数">4.2. 窗口函数</h2>
+<h3 id="4-2-1-窗口的创建">4.2.1. 窗口的创建</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">initgraph(<span class="type">int</span> width, <span class="type">int</span> height, <span class="type">int</span> flag);</span><br></pre></td></tr></table></figure>
+<p>width–窗口宽度 height–窗口高度 flag–窗口样式<br>
+flag可写多个也可不写，不写默认取NULL。<br>
+flag也可以取如下值：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">值</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">EX_DBLCLKS</td>
+<td style="text-align:center">在绘图窗口中支持鼠标双击事件</td>
+</tr>
+<tr>
+<td style="text-align:center">EX_NOCLOSE</td>
+<td style="text-align:center">禁用绘图窗口的关闭按钮</td>
+</tr>
+<tr>
+<td style="text-align:center">EX_NOMINIMIZE</td>
+<td style="text-align:center">禁用绘图窗口的最小化按钮</td>
+</tr>
+<tr>
+<td style="text-align:center">EX_SHOWCONSOLE</td>
+<td style="text-align:center">显示控制台窗口</td>
+</tr>
+</tbody>
+</table>
+<p>例如以下都能创建窗口</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">initgraph(<span class="number">640</span>,<span class="number">480</span>);</span><br><span class="line">initgraph(<span class="number">640</span>,<span class="number">480</span>,EX_SHOWCONSOLE);</span><br><span class="line">initgraph(<span class="number">640</span>,<span class="number">480</span>,EX_SHOWCONSOLE | EX_NOCLOSE);</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-2-窗口的关闭">4.2.2. 窗口的关闭</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">closegraph();</span><br></pre></td></tr></table></figure>
+<p>是的就这点。</p>
+<h3 id="4-2-3-绘图表面的清空">4.2.3. 绘图表面的清空</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cleardevice();</span><br></pre></td></tr></table></figure>
+<p>使用当前背景色清空绘图设备。</p>
+<h2 id="4-3-绘图函数">4.3. 绘图函数</h2>
+<h3 id="4-3-1-无填充图形的绘制">4.3.1. 无填充图形的绘制</h3>
+<p>几个常用的图形：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//绘制以(x,y)为圆心，radius为半径的圆</span></span><br><span class="line">circle(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> radius);</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制以(left,top)为左上角，(right,bottom)为右下角的椭圆(外切矩形的)</span></span><br><span class="line">ellipse(<span class="type">int</span> left,<span class="type">int</span> top,<span class="type">int</span> right,<span class="type">int</span> bottom);</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制扇形，在椭圆的基础上strangle为起始角弧度，endangle为终止角弧度</span></span><br><span class="line">pie(<span class="type">int</span> left,<span class="type">int</span> top,<span class="type">int</span> right,<span class="type">int</span> bottom,<span class="type">double</span> stangle,<span class="type">double</span> endangle);</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制多边形，传入POINT数组，num为多边形顶点的个数，其等于数组中元素个数</span></span><br><span class="line">polygon(<span class="type">const</span> POINT *points,<span class="type">int</span> num);</span><br><span class="line"><span class="comment">//绘制多边形示例</span></span><br><span class="line">POINT pts[] = &#123; &#123;<span class="number">50</span>, <span class="number">200</span>&#125;, &#123;<span class="number">200</span>, <span class="number">200</span>&#125;, &#123;<span class="number">200</span>, <span class="number">50</span>&#125; &#125;;</span><br><span class="line">polygon(pts,<span class="number">3</span>);</span><br><span class="line"><span class="type">int</span> pts[] = &#123;<span class="number">50</span>, <span class="number">200</span>,  <span class="number">200</span>, <span class="number">200</span>,  <span class="number">200</span>, <span class="number">50</span>&#125;;</span><br><span class="line">polygon((POINT*)pts, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制以(left,top)为左上角,以(right,bottom)为右下角的矩形</span></span><br><span class="line">rectangle(<span class="type">int</span> left,<span class="type">int</span> top,<span class="type">int</span> right,<span class="type">int</span> bottom);</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制圆角矩形，在矩形的基础上ellipsewidth为圆角椭圆宽度，ellipseheight为圆角椭圆高度</span></span><br><span class="line">roundrect(<span class="type">int</span> left,<span class="type">int</span> top,<span class="type">int</span> right,<span class="type">int</span> bottom,<span class="type">int</span> ellipsewidth,<span class="type">int</span> ellipseheight);</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制一条连接(x1,y1)和(x2,y2)的线段</span></span><br><span class="line">line(<span class="type">int</span> x1,<span class="type">int</span> y1,<span class="type">int</span> x2,<span class="type">int</span> y2);</span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制一点(x,y),color为颜色</span></span><br><span class="line">putpixel(<span class="type">int</span> x,<span class="type">int</span> y,COLORREF color);</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-2-有-无边框的有填充图形的绘制">4.3.2. 有/无边框的有填充图形的绘制</h3>
+<p>在函数前面加fill–有边框填充<br>
+在函数前面加solid–无边框填充,如</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fillcircle(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> radius);</span><br><span class="line">solidcircle(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> radius);</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-3-绘图颜色及样式设置">4.3.3. 绘图颜色及样式设置</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置线条样式</span></span><br><span class="line">setlinestyle(<span class="type">int</span> style,<span class="type">int</span> thickness);<span class="comment">//style被预定义了，具体见下表; thickness为线条粗细,这里有所省略，用这些就够了</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//设置线条颜色</span></span><br><span class="line">setlinecolor(COLORREF color);<span class="comment">//COLORREF color被预定义了，具体见下表，也可以用RGB(a,b,c)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//设置填充颜色</span></span><br><span class="line">setfillcolor(COLORREF color);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置背景颜色</span></span><br><span class="line">setbkcolor(COLORREF color);</span><br><span class="line">cleardevice();<span class="comment">//把原来的背景色清除掉</span></span><br></pre></td></tr></table></figure>
+<h4 id="预定义颜色">预定义颜色</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">颜色名称</th>
+<th style="text-align:center">颜色</th>
+<th style="text-align:center">颜色名称</th>
+<th style="text-align:center">颜色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">BLACK</td>
+<td style="text-align:center">黑</td>
+<td style="text-align:center">DARKGRAY</td>
+<td style="text-align:center">深灰</td>
+</tr>
+<tr>
+<td style="text-align:center">BLUE</td>
+<td style="text-align:center">蓝</td>
+<td style="text-align:center">LIGHTBLUE</td>
+<td style="text-align:center">亮蓝</td>
+</tr>
+<tr>
+<td style="text-align:center">GREEN</td>
+<td style="text-align:center">绿</td>
+<td style="text-align:center">LIGHTGREEN</td>
+<td style="text-align:center">亮绿</td>
+</tr>
+<tr>
+<td style="text-align:center">CYAN</td>
+<td style="text-align:center">青</td>
+<td style="text-align:center">LIGHTCYAN</td>
+<td style="text-align:center">亮青</td>
+</tr>
+<tr>
+<td style="text-align:center">RED</td>
+<td style="text-align:center">红</td>
+<td style="text-align:center">LIGHTRED</td>
+<td style="text-align:center">亮红</td>
+</tr>
+<tr>
+<td style="text-align:center">MAGENTA</td>
+<td style="text-align:center">紫</td>
+<td style="text-align:center">LIGHTMAGENTA</td>
+<td style="text-align:center">亮紫</td>
+</tr>
+<tr>
+<td style="text-align:center">BROWN</td>
+<td style="text-align:center">棕</td>
+<td style="text-align:center">YELLOW</td>
+<td style="text-align:center">黄</td>
+</tr>
+<tr>
+<td style="text-align:center">LIGHTGRAY</td>
+<td style="text-align:center">浅灰</td>
+<td style="text-align:center">WHITE</td>
+<td style="text-align:center">白</td>
+</tr>
+</tbody>
+</table>
+<h4 id="预定义线条样式">预定义线条样式</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">样式名称</th>
+<th style="text-align:center">样式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">PS_SOLID</td>
+<td style="text-align:center">实线</td>
+</tr>
+<tr>
+<td style="text-align:center">PS_DASH</td>
+<td style="text-align:center">-------</td>
+</tr>
+<tr>
+<td style="text-align:center">PS_DOT</td>
+<td style="text-align:center">············</td>
+</tr>
+<tr>
+<td style="text-align:center">PS_DASHDOT</td>
+<td style="text-align:center">-·-·-·-·</td>
+</tr>
+<tr>
+<td style="text-align:center">PS_DASHDOTDOT</td>
+<td style="text-align:center">-··-··-··</td>
+</tr>
+<tr>
+<td style="text-align:center">PS_NULL</td>
+<td style="text-align:center">线不可见</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-4-文字绘制函数">4.4. 文字绘制函数</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//文字输出</span></span><br><span class="line">outtextxy(<span class="type">int</span> x,<span class="type">int</span> y,LPCTSTR str);<span class="comment">//在(x,y)处输出字符串</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//设置文字颜色</span></span><br><span class="line">settextcolor(COLORREF color);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置文字样式</span></span><br><span class="line">settextstyle(<span class="type">int</span> height,<span class="type">int</span> width,LPCTSTR fontname);<span class="comment">//height为文字高度，width为文字宽度(0--自适应)，fontname为字体名称，如&quot;楷体&quot;(传了字符串)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//设置背景模式</span></span><br><span class="line">setbkmode(<span class="type">int</span> mode);<span class="comment">//mode为背景模式，TRANSPARENT(1)--透明(全小写的是EasyX中的)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取字符串占用的像素宽/高</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">textheight</span><span class="params">(LPCTSTR str)</span>;<span class="comment">//获取所占高度</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">textwidth</span><span class="params">(LPCTSTR str)</span>;<span class="comment">//获取所占宽度</span></span><br></pre></td></tr></table></figure>
+<p>需要注意,outtextxy()函数不能直接传中文字符串。如要传中文字符串：</p>
+<ul>
+<li>在字符串前面加一个大写的’L’,如 L&quot;早上好&quot;</li>
+<li>将字符串改写为TEXT(str),如 TEXT(“早上好”) ,其中TEXT可改写成_T</li>
+<li>(推荐) VS上方工具栏&quot;项目&quot;- “属性”-“高级”，将&quot;字符集&quot;选项改为&quot;使用多字节字符集&quot;</li>
+</ul>
+<h2 id="4-5-图像处理">4.5. 图像处理</h2>
+<h3 id="4-5-1-图像处理的变量类型">4.5.1. 图像处理的变量类型</h3>
+<p>在导入图片时,需要用IMAGE类型定义变量,再将图片加载进变量。</p>
+<h3 id="4-5-2-从文件中读取并展示图像">4.5.2. 从文件中读取并展示图像</h3>
+<p>先看函数原型：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">loadimage(IMAGE *pDstImg,LPCTSTR pImgfile,<span class="type">int</span> nWidth=<span class="number">0</span>,<span class="type">int</span> nHeight=<span class="number">0</span>,<span class="type">bool</span> bResize=<span class="literal">false</span>);</span><br><span class="line"><span class="comment">//pDstImg:IMAGE类型变量的指针</span></span><br><span class="line"><span class="comment">//pImgfile:图片文件名</span></span><br><span class="line"><span class="comment">//nWidth:图片拉伸到的宽度</span></span><br><span class="line"><span class="comment">//nHeight:图片拉伸到的高度,和nWidth在赋0时表示使用原图信息</span></span><br><span class="line"><span class="comment">//bResize:是否调整IMAGE大小以适应图片</span></span><br></pre></td></tr></table></figure>
+<p>实际应用这么写(要是不放缩图片)：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IMAGE img1;</span><br><span class="line">loadimage(&amp;img1,<span class="string">&quot;./src/show.jpg&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>上面只是加载了图像，用户还看不到，所以有下面的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">putimage(<span class="type">int</span> dstX,<span class="type">int</span> dstY,IMAGE *pSrclmg,DWORD dwRop=SRCCOPY);</span><br><span class="line"><span class="comment">//dstX,dstY:绘制位置的(x,y)坐标</span></span><br><span class="line"><span class="comment">//pSrclmg:要绘制的IMAGE变量的指针</span></span><br><span class="line"><span class="comment">//dwRop=SRCCOPY:三元光栅操作码</span></span><br></pre></td></tr></table></figure>
+<p>实际应用(接上)这么写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">putimage(<span class="number">0</span>,<span class="number">0</span>,&amp;img);</span><br></pre></td></tr></table></figure>
+<p>综上，将会在窗口的(0,0)坐标处绘制一个原图大小的src中的show.jpg。</p>
+<h1>5. 鼠标和键盘消息的获取</h1>
+<p>这部分依旧属于EasyX，但键鼠消息获取对游戏很重要，故单独拿出来做笔记</p>
+<h2 id="5-1-消息的变量类型">5.1. 消息的变量类型</h2>
+<p>EasyX中用类型ExMessage定义的变量获取消息。<br>
+ExMessage的结构体定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ExMessage</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	USHORT message;				<span class="comment">// 消息标识</span></span><br><span class="line">	<span class="class"><span class="keyword">union</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">		<span class="comment">// 鼠标消息的数据&quot;EX_MOUSE&quot;</span></span><br><span class="line">		<span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">		&#123;</span></span><br><span class="line">			<span class="type">bool</span> ctrl		:<span class="number">1</span>;	<span class="comment">// Ctrl 键是否按下</span></span><br><span class="line">			<span class="type">bool</span> shift		:<span class="number">1</span>;	<span class="comment">// Shift 键是否按下</span></span><br><span class="line">			<span class="type">bool</span> lbutton	:<span class="number">1</span>;	<span class="comment">// 鼠标左键是否按下</span></span><br><span class="line">			<span class="type">bool</span> mbutton	:<span class="number">1</span>;	<span class="comment">// 鼠标中键是否按下</span></span><br><span class="line">			<span class="type">bool</span> rbutton	:<span class="number">1</span>;	<span class="comment">// 鼠标右键</span></span><br><span class="line">			<span class="type">short</span> x;			<span class="comment">// 鼠标的 x 坐标</span></span><br><span class="line">			<span class="type">short</span> y;			<span class="comment">// 鼠标的 y 坐标</span></span><br><span class="line">			<span class="type">short</span> wheel;		<span class="comment">// 鼠标滚轮滚动值，为 120 的倍数</span></span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="comment">// 按键消息的数据&quot;EX_KEY&quot;</span></span><br><span class="line">		<span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">		&#123;</span></span><br><span class="line">			BYTE vkcode;		<span class="comment">// 按键的虚拟键码</span></span><br><span class="line">			BYTE scancode;		<span class="comment">// 按键的扫描码（依赖于 OEM）</span></span><br><span class="line">			<span class="type">bool</span> extended	:<span class="number">1</span>;	<span class="comment">// 按键是否是扩展键</span></span><br><span class="line">			<span class="type">bool</span> prevdown	:<span class="number">1</span>;	<span class="comment">// 按键的前一个状态是否按下</span></span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="comment">// 字符消息的数据&quot;EX_CHAR&quot;</span></span><br><span class="line">		TCHAR ch;</span><br><span class="line">        <span class="comment">// 窗口消息的数据&quot;EX_WINDOW&quot;</span></span><br><span class="line">		<span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">		&#123;</span></span><br><span class="line">			WPARAM wParam;</span><br><span class="line">			LPARAM lParam;</span><br><span class="line">	    &#125;;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>其中USHORT message消息标识如下:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">消息标识</th>
+<th style="text-align:center">消息类别</th>
+<th style="text-align:center">具体消息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">WM_MOUSEMOVE</td>
+<td style="text-align:center">EX_MOUSE</td>
+<td style="text-align:center">鼠标移动消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_MOUSEWHEEL</td>
+<td style="text-align:center">EX_MOUSE</td>
+<td style="text-align:center">鼠标滚轮拨动消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_LBUTTONDOWN</td>
+<td style="text-align:center">EX_MOUSE</td>
+<td style="text-align:center">左键按下消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_LBUTTONUP</td>
+<td style="text-align:center">EX_MOUSE</td>
+<td style="text-align:center">左键弹起消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_LBUTTONDBLCLK</td>
+<td style="text-align:center">EX_MOUSE</td>
+<td style="text-align:center">左键双击消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_MBUTTONDOWN</td>
+<td style="text-align:center">EX_MOUSE</td>
+<td style="text-align:center">中键按下消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_MBUTTONUP</td>
+<td style="text-align:center">EX_MOUSE</td>
+<td style="text-align:center">中键弹起消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_MBUTTONDBLCLK</td>
+<td style="text-align:center">EX_MOUSE</td>
+<td style="text-align:center">中键双击消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_RBUTTONDOWN</td>
+<td style="text-align:center">EX_MOUSE</td>
+<td style="text-align:center">右键按下消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_RBUTTONUP</td>
+<td style="text-align:center">EX_MOUSE</td>
+<td style="text-align:center">右键弹起消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_RBUTTONDBLCLK</td>
+<td style="text-align:center">EX_MOUSE</td>
+<td style="text-align:center">右键双击消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_KEYDOWN</td>
+<td style="text-align:center">EX_KEY</td>
+<td style="text-align:center">按键按下消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_KEYUP</td>
+<td style="text-align:center">EX_KEY</td>
+<td style="text-align:center">按键弹起消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_CHAR</td>
+<td style="text-align:center">EX_CHAR</td>
+<td style="text-align:center">字符消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_ACTIVATE</td>
+<td style="text-align:center">EX_WINDOW</td>
+<td style="text-align:center">窗口激活状态改变消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_MOVE</td>
+<td style="text-align:center">EX_WINDOW</td>
+<td style="text-align:center">窗口移动消息</td>
+</tr>
+<tr>
+<td style="text-align:center">WM_SIZE</td>
+<td style="text-align:center">EX_WINDOW</td>
+<td style="text-align:center">窗口大小改变消息</td>
+</tr>
+</tbody>
+</table>
+<p>共用体union用于检测哪个键被按下，其与消息类别相关。</p>
+<h2 id="5-2-消息的获取">5.2. 消息的获取</h2>
+<p>首先来了解peekmessage函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">peekmessage</span><span class="params">(ExMessage *pmsg,BYTE filter = <span class="number">-1</span>,<span class="type">bool</span> removemsg =<span class="literal">true</span>)</span>;</span><br></pre></td></tr></table></figure>
+<p>函数若收到消息,则返回true;否则返回false;<br>
+pmsg指针用于保存获取到的信息;<br>
+filter默认为-1表示接收所有输入,将-1替换成下表所示参数可限制获取指定类别的消息:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">EX_MOUSE</td>
+<td style="text-align:center">鼠标消息</td>
+</tr>
+<tr>
+<td style="text-align:center">EX_KEY</td>
+<td style="text-align:center">按键消息</td>
+</tr>
+<tr>
+<td style="text-align:center">EX_CHAR</td>
+<td style="text-align:center">字符消息</td>
+</tr>
+<tr>
+<td style="text-align:center">EX_WINDOW</td>
+<td style="text-align:center">窗口消息</td>
+</tr>
+</tbody>
+</table>
+<p>removemsg控制peekmessage处理完毕后是否将其从消息队列移除。(可以不写)<br>
+实际应用时，按照下面的示例写即可:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ExMessage msg;<span class="comment">//一定要定义一个ExMessage变量</span></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)<span class="comment">//一直监听</span></span><br><span class="line">&#123;</span><br><span class="line">    peekmessage(&amp;msg,EX_MOUSE|EX_KEY);<span class="comment">//获取鼠标和键盘的输入并记录在msg中</span></span><br><span class="line">    <span class="keyword">if</span>(msg.message == WM_KEYDOWN)<span class="comment">//键盘是否按下？</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(m.vkcode == <span class="string">&#x27;Z&#x27;</span>)<span class="comment">//按的是F吗？</span></span><br><span class="line">        &#123;</span><br><span class="line">            ···<span class="comment">//执行语句</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>至此EasyX的基础操作已经完毕。</p>
+<h1>6. 音频的播放</h1>
+<p>EasyX只提供图形界面的功能，音频播放需导入其它的头文件和库。<br>
+可以用.mp3与.wav</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Windows.h&gt;</span> <span class="comment">//导入系统接口</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mmsystem.h&gt;</span> <span class="comment">//导入系统多媒体头文件</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> comment(lib,<span class="string">&quot;winmm.lib&quot;</span>); <span class="comment">//导入库文件,注意分号</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="6-1-导入音乐">6.1. 导入音乐</h2>
+<p>右击解决方案下面的项目名，选择&quot;在文件资源管理器中打开文件夹&quot;<br>
+这样打开了项目目录，向项目目录中拖入.mp3文件，再用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mciSendString(<span class="string">&quot;open music.mp3&quot;</span>,<span class="literal">NULL</span>,<span class="number">0</span>,<span class="literal">NULL</span>);<span class="comment">//同级目录</span></span><br><span class="line">mciSendString(<span class="string">&quot;open music.mp3 alias bgm1&quot;</span>,<span class="literal">NULL</span>,<span class="number">0</span>,<span class="literal">NULL</span>);<span class="comment">//alias取别名</span></span><br></pre></td></tr></table></figure>
+<p>打开音乐，但还未播放;再用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mciSendString(<span class="string">&quot;play music.mp3&quot;</span>,<span class="literal">NULL</span>,<span class="number">0</span>,<span class="literal">NULL</span>);</span><br><span class="line">mciSendString(<span class="string">&quot;play bgm1&quot;</span>,<span class="literal">NULL</span>,<span class="number">0</span>,<span class="literal">NULL</span>);<span class="comment">//别名</span></span><br></pre></td></tr></table></figure>
+<p>播放音乐。若要关闭音乐,则用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mciSendString(<span class="string">&quot;close music.mp3&quot;</span>,<span class="literal">NULL</span>,<span class="number">0</span>,<span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="6-2-调整音量">6.2. 调整音量</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mciSendString(<span class="string">&quot;setaudio bgm1 volume to 90 &quot;</span>)<span class="comment">//volume的数值可取0到1000,标准为100</span></span><br></pre></td></tr></table></figure>
+<h2 id="6-3-定义函数">6.3. 定义函数</h2>
+<p>籍此，我们可以定义一个函数方便实现音乐的播放：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">PlayBGM</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *music)</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> cmd[<span class="number">100</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="built_in">sprintf</span>(cmd,<span class="string">&quot;open %s alias bgm&quot;</span>,music);<span class="comment">//将指令打印到cmd[]中</span></span><br><span class="line">	MCIERROR ret = mciSendString(cmd,<span class="literal">NULL</span>,<span class="number">0</span>,<span class="literal">NULL</span>);<span class="comment">//类似scanf,导入音乐的同时检测是否成功(成功返回0)</span></span><br><span class="line">	<span class="keyword">if</span> (ret != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">char</span> err[<span class="number">100</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">		mciGetErrorString(ret,err,<span class="keyword">sizeof</span>(err));<span class="comment">//获取错误信息</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;openERROR:%s&quot;</span>,err);</span><br><span class="line">	&#125;</span><br><span class="line">	mciSendString(<span class="string">&quot;play bgm&quot;</span>,<span class="literal">NULL</span>,<span class="number">0</span>,<span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此函数可以用诸如setaudio的功能拓展。</p>
+<h2 id="6-4-音效播放">6.4. 音效播放</h2>
+<p>使用PlaySound()函数实现音效播放:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PlaySound(<span class="type">char</span> *fllename,<span class="literal">NULL</span>,SND_FILENAME|SND_ASYNC);</span><br></pre></td></tr></table></figure>
+<p>仅支持.wav音乐，输入文件名加后面参数即可。</p>
+<hr>
+<p>庆祝舞萌w2！！！🎆🎆🎆</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">鏡野雫</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/11/29/easyx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">http://example.com/2024/11/29/easyx学习笔记/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">鏡野屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a><a class="post-meta__tags" href="/tags/C%E8%AF%AD%E8%A8%80/">C语言</a><a class="post-meta__tags" href="/tags/%E5%9B%BE%E5%BD%A2%E5%BA%93/">图形库</a><a class="post-meta__tags" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">鏡野雫</div><div class="author-info-description">WMC</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/KagaminoShizuku" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=2012382722" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">1. 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">2. 环境准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">3. EasyX基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-EasyX%E4%BD%BF%E7%94%A8%E7%9A%84%E9%A2%9C%E8%89%B2"><span class="toc-text">3.1. EasyX使用的颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-EasyX%E7%9A%84%E5%9D%90%E6%A0%87"><span class="toc-text">3.2. EasyX的坐标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-EasyX%E7%9A%84%E7%BB%98%E5%9B%BE%E8%A1%A8%E9%9D%A2%EF%BC%88%E5%8F%88%E7%A7%B0%E7%BB%98%E5%9B%BE%E8%AE%BE%E5%A4%87%EF%BC%89"><span class="toc-text">3.3. EasyX的绘图表面（又称绘图设备）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-text">3.4. 常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1-%E7%BC%96%E8%AF%91%E6%8A%A5%E9%94%99%EF%BC%8C%E6%8F%90%E7%A4%BAEasyX-is-only-for-c"><span class="toc-text">3.4.1. 编译报错，提示EasyX is only for c++</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99%EF%BC%8C%E6%8F%90%E7%A4%BA%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80-exe%E8%BF%9B%E8%A1%8C%E5%86%99%E5%85%A5"><span class="toc-text">3.4.2. 运行报错，提示无法打开.exe进行写入</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">4. EasyX用法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%BC%95%E5%85%A5EasyX"><span class="toc-text">4.1.引入EasyX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0"><span class="toc-text">4.2. 窗口函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-%E7%AA%97%E5%8F%A3%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-text">4.2.1. 窗口的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-%E7%AA%97%E5%8F%A3%E7%9A%84%E5%85%B3%E9%97%AD"><span class="toc-text">4.2.2. 窗口的关闭</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-%E7%BB%98%E5%9B%BE%E8%A1%A8%E9%9D%A2%E7%9A%84%E6%B8%85%E7%A9%BA"><span class="toc-text">4.2.3. 绘图表面的清空</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0"><span class="toc-text">4.3. 绘图函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-%E6%97%A0%E5%A1%AB%E5%85%85%E5%9B%BE%E5%BD%A2%E7%9A%84%E7%BB%98%E5%88%B6"><span class="toc-text">4.3.1. 无填充图形的绘制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2-%E6%9C%89-%E6%97%A0%E8%BE%B9%E6%A1%86%E7%9A%84%E6%9C%89%E5%A1%AB%E5%85%85%E5%9B%BE%E5%BD%A2%E7%9A%84%E7%BB%98%E5%88%B6"><span class="toc-text">4.3.2. 有&#x2F;无边框的有填充图形的绘制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-3-%E7%BB%98%E5%9B%BE%E9%A2%9C%E8%89%B2%E5%8F%8A%E6%A0%B7%E5%BC%8F%E8%AE%BE%E7%BD%AE"><span class="toc-text">4.3.3. 绘图颜色及样式设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E5%AE%9A%E4%B9%89%E9%A2%9C%E8%89%B2"><span class="toc-text">预定义颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E5%AE%9A%E4%B9%89%E7%BA%BF%E6%9D%A1%E6%A0%B7%E5%BC%8F"><span class="toc-text">预定义线条样式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E6%96%87%E5%AD%97%E7%BB%98%E5%88%B6%E5%87%BD%E6%95%B0"><span class="toc-text">4.4. 文字绘制函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="toc-text">4.5. 图像处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-1-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%9A%84%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="toc-text">4.5.1. 图像处理的变量类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-2-%E4%BB%8E%E6%96%87%E4%BB%B6%E4%B8%AD%E8%AF%BB%E5%8F%96%E5%B9%B6%E5%B1%95%E7%A4%BA%E5%9B%BE%E5%83%8F"><span class="toc-text">4.5.2. 从文件中读取并展示图像</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">5. 鼠标和键盘消息的获取</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="toc-text">5.1. 消息的变量类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E6%B6%88%E6%81%AF%E7%9A%84%E8%8E%B7%E5%8F%96"><span class="toc-text">5.2. 消息的获取</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">6. 音频的播放</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E5%AF%BC%E5%85%A5%E9%9F%B3%E4%B9%90"><span class="toc-text">6.1. 导入音乐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E8%B0%83%E6%95%B4%E9%9F%B3%E9%87%8F"><span class="toc-text">6.2. 调整音量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0"><span class="toc-text">6.3. 定义函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4-%E9%9F%B3%E6%95%88%E6%92%AD%E6%94%BE"><span class="toc-text">6.4. 音效播放</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/29/easyx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="EasyX学习笔记">EasyX学习笔记</a><time datetime="2024-11-28T17:20:16.000Z" title="发表于 2024-11-29 01:20:16">2024-11-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/27/%E5%85%B3%E4%BA%8EC%E6%8C%87%E9%92%88/" title="关于C指针">关于C指针</a><time datetime="2024-11-26T19:17:21.000Z" title="发表于 2024-11-27 03:17:21">2024-11-27</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By 鏡野雫</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script src="/js/custom.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
